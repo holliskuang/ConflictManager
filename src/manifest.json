@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "ConflictManager",
+  "description": "A chrome extension to manage conflicts on your Google Calendar",
+  "options_page": "options.html",
+  "background": { "service_worker": "background.bundle.js" },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "add-friend-32.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*", "http://mail.google.com/*"],
+      "js": ["contentScript.bundle.js"],
+      "css": ["content.styles.css"]
+    }
+  ],
+  "permissions": [
+    "nativeMessaging",
+    "activeTab",
+    "scripting",
+    "identity",
+    "identity.email",
+    "storage"
+  ],
+  "oauth2": {
+    "client_id": "44231090851-iqjgds6t1k60k1m7sk2qgt60ti63ne9r.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/calendar"]
+  },
+  "devtools_page": "devtools.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["content.styles.css", "icon-128.png", "add-friend-32.png"],
+      "matches": []
+    }
+  ]
+}
